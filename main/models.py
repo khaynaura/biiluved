@@ -1,6 +1,6 @@
 from django.db import models
 
-class ProductEntry(models.Model):
+class Product(models.Model):
     category_choices = [
         ("clothing", "Clothing"),
         ("shoes", "Shoes"),
