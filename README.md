@@ -38,7 +38,7 @@
 ```
 5. Setelah itu, saya membuka main.html dan memastikan bahwa hal yang terbuka sesuai dengan apa yang saya buat.
 
-**CHEKCLIST 4: Membuat model pada aplikasi main dengan nama Product yang memiliki atribut wajib _name, description,_ dan _price_**
+**CHECKLIST 4: Membuat model pada aplikasi main dengan nama Product yang memiliki atribut wajib _name, description,_ dan _price_**
 1. Setelah saya menyesuaikan kebutuhan aplikasi, saya memodifikasi models.py yang berada pada direktori main menajadi:
    ```
    from django.db import models
@@ -72,7 +72,7 @@
     ```
 2. Setelah itu, saya menjalankan `python manage.py makemigrations` dan `puthon manage.py migrate`.
    
-**CHEKLIST 5: Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.**
+**CHECKLIST 5: Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.**
 1. Memodifikasi views.py yang ada di direktori main menjadi:
 ```
 from django.shortcuts import render
@@ -98,7 +98,7 @@ def show_main(request):
 <h3>Class: </h3>
 <p>{{class}}</p>
 ```
-**CHEKCLIST 6: Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.**
+**CHECKLIST 6: Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.**
 1. Saya mengatur _routing_ URL agar aplikasi main dapat diakses dengan menambahkan kode di urls.py di direktori main:
 ```
 from django.urls import path
@@ -124,12 +124,25 @@ urlpatterns = [
 3. Untuk memastikan bahwa routing berhasil, saya menjalankan perintah `python manage.py runserver`
 4. Saya mencoba membuka http://localhost:8000/ dan melihat bahwa sudah berhasil.
 5. Setelah berhasil, saya melakukan ` git add, commit, dan push`
-	<img width="424" alt="Screenshot 2024-09-07 at 18 55 56" src="https://github.com/user-attachments/assets/dc0c43d1-5733-4972-93e2-e0bc32b4f302">
+   
+<img width="424" alt="Screenshot 2024-09-07 at 18 55 56" src="https://github.com/user-attachments/assets/dc0c43d1-5733-4972-93e2-e0bc32b4f302">
 
 
 **CHECKLIST 7: Melakukan deployment ke PWS terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.**
 1. Sebelumnya, saya telah mencoba melakukan deployment ke PWS. Seharusnya, setelah ini saya bisa langsung menjalankan perintah `git push pws main:master`. Namun, PWS yang error membuat deployment tidak berhasil dan tugas 2 cukup hanya sampai dapat diakses dalam local host.
 
 ### **Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html**
+
+<img width="532" alt="Screenshot 2024-09-07 at 21 05 51" src="https://github.com/user-attachments/assets/64534267-8ba6-42c7-aed6-e6cba0661df2">
+
+Penjelasan: Alur dimulai dari client yang melakuakn request melalui url yang telah didefinisikan pada `urls.py`. `urls.py` berguna untuk mendefinisikan url pattern dan juga akan menentukan view yang harus dipanggil untuk url pattern-nya. Setelah itu, django akan menerima request dan kan meneruskan ke `views.py` untuk memproses request yang ada. Lalu, views.py akan berinteraksi dengan `models.py`. Hal tersebut berguna untuk mendapatkan data pada model. Setelah mendapatkan data, `views.py` akan menggunakan template, yang mana jika di tugas ini ialah `main.html` untuk melakukan render tampilan html. Template tersebut akan menggunakan data dari `views.py`. Lalu, template html yang telah di render tersebut yang akan menjadi jawaban dari request atau response ke client. 
+
+### **Jelaskan fungsi git dalam pengembangan perangkat lunak!**
+
+### **Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?**
+
+### **Mengapa model pada Django disebut sebagai ORM?**
+
+
 
 
