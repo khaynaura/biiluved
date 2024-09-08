@@ -139,10 +139,19 @@ Penjelasan: Alur dimulai dari client yang melakuakn request melalui url yang tel
 
 ### **Jelaskan fungsi git dalam pengembangan perangkat lunak!**
 
+Git merupakan sebuah alat yang digunakan untuk mengatur sumber code yang digunakan untuk pengembangan perangkat lunak. Git dapat melakukan tracking code, yaitu memberi tahu _history_ dari code yang ada, seperti perubahan yang pernah dilakukan dalam pengembangan perangkat lunak tersebut. Dengan adanya git, developer juga memiliki backup code. Hal tersebut tentunya memudahkan developer jika ingin melanjutkan pengemangan perangkat lunak di device lain. 
+
+Selain itu, pengembangan perangkat lunak biasanya membutuhkan banyak developer. Git juga memudahkan para developer untuk bekerja sama dengan developer lain sehingga pengembangan perangkat lunak menjadi lebih efisien dan cepat. Hal tersebut dapat dilakukan dengan menggunakan _commands_ yang ada dalam git. 
+
 ### **Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?**
+
+Django merupakan sebuah framework yang berbasis bahasa python. Python sendiri sudah dikenal sebagai bahasa yang mudah dipelajari untuk para pemula. Tak hanya itu, framework Django juga sudah menyiapkan fitur penting yang berguna untuk pengembangan perangkat lunak, seperti fitur authentication dan pengelolaan database. Hal tersebut tentunya sangat memudahkan orang yang baru belajar mengenai pengembangan perangkat lunak.
+
+Tak hanya itu, Django juga mempunyai konsep Model-View-Template (MVT) yang dapat membantu pemula untuk mengerti konsep awal dalam pengembangan aplikasi. Selain itu, Django juga memiliki dokumentasi yang lengkap dan komunitas besar. Hal tersebut tentunya memberikan pemula sumber yang cukup luas untuk memahami Django secara lebih mendalam ataupun untuk mengatasi kesulitan yang dihadapi.
 
 ### **Mengapa model pada Django disebut sebagai ORM?**
 
+Model Django ORM (_object-relational mapper)_ merupakan model yang memudahkan developer untuk berinteraksi dengan database apapun dengan menggunakan python. Dengan mengggunakan Django, developer tidak perlu menggunakan SQL untuk berinteraksi dengan database. Hal tersebut memudahkan developer dalam pengembangan backendnya.
 
 
 
