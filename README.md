@@ -131,7 +131,7 @@ urlpatterns = [
 
 
 **CHECKLIST 7: Melakukan deployment ke PWS terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.**
-1. Sebelumnya, saya telah mencoba melakukan deployment ke PWS. Seharusnya, setelah ini saya bisa langsung menjalankan perintah `git push pws main:master`. Namun, PWS yang error membuat deployment tidak berhasil dan tugas 2 cukup hanya sampai dapat diakses dalam local host.
+1. Sebelumnya, saya telah mencoba melakukan deployment ke PWS. Seharusnya, setelah ini saya bisa langsung menjalankan perintah `git push pws main:master`. Namun, PWS yang error membuat deployment tidak berhasil dan tugas 2 cukup hanya sampai dapat diakses dalam local host. Setelah mendapat informasi bahwa PWS dapat bekerja, saya menjalankan `git push pws main:master` dan status pws berubah menjadi running. Hal tersebut berarti bahwa PWS telah berhasil di deploy dan projek dapat dilihat melalui link yang tertera di awal.
 
 ### **Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html**
 
