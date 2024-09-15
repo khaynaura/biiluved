@@ -7,6 +7,101 @@
 
 Link to pws: http://khayla-naura-biiluved.pbp.cs.ui.ac.id/
 
+## **TUGAS 3: Implementasi Form dan Data Delivery pada Django**
+
+### **Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?**
+
+Data delivery dibutuhkan dalam implementasi sebuah platform karena bagian inilah yang memastikan bahwa data yang dikirim dan diterima ke pengguna maupun server sudah akurat. Tak hanya itu, data delivery yang efektif dapt membantu platform dalam mebuat keputusan yang berdasarkan dengan adanya data yang selalu terupdate dan sesuai dengan kebutuhan pengguna. Data delivery juga sangat dibutuhkan karena memberikan responsivitas yang cepat serta menjaga keamanan data. Maka dari itu, data delivery sangatlah dibutuhkan untuk mendukung fungsi dan performa platform.
+
+### **Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?**
+Menurut saya, baik JSON dan XML memiliki kelebihannya masing-masing. Sebagai contoh, XML sendiri memiliki struktur data yang lebih kompleks karena XML memberikan pengorganisasisan data yang hierarkis. Namun karena hal tersebut, XML memiliki kompleksitas yang lebih rumit. Di lain sisi, JSON memiliki struktur yang lebih sederhana dan lebih mudah untuk digunakan oleh para pemula. Maka dari itu, saya merasa bahwa JSON lebih baik dibandingkan dengan XML.
+
+Kepopuleran JSON sendiri diakrenakan JSON memiliki kompatibilitas dengan JavaScript, bahasa yang sangat sering digunakan untuk pengembangan web. Selain itu, JSON cenderung lebih ringan dan sering dipakai dalam penggunaan API. API sendiri sangat penting untuk dalam pengembangan aplikasi khususnnya dalam transformasi data.
+
+### **Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?**
+
+Fungsi dari method `is_valid` ialah untuk memvalidasi data yang dikirim oleh pengguna. Fungsi tersebut akan menjalankan validasi data yang diisi. Validasi yang dijalankan akan menyesuaikan dengan format yang telah ditetapkan oleh developer. Sebagai contoh, dalam biiLUVed, bagian price berupa integer field, method ini akan memastikan bahwa input pengguna benar berupa integer. Method `is_valid` akan mengembalikan `return` berupa boolean, yang akan mengembalikan nilai `True` jika semuanya telah memenuhi kriterai dan akan mengembalikan nilai `False` jika tidak ada yang sesuai dan biasanya akan menampilkan error yang ada. 
+
+### **Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?**
+
+Kita membutuhkan `csrf_token` dikarenakan token itulah yang memberikan verifikasi bahwa setiap form yang masuk ke server memang diisi oleh user yang terautentikasi dan bukan dari sumber yang berbahaya. Jika kita tidak menambahkan `csrf_token`, maka aplikasi yang kita buat dapat menjadi rentan terhadap attacker dan serangan-serangan lain yang bisa mengrahkan pengguna untuk melakukan hal-hal yang tidak diinginkan. Sebagai contoh, serangan-serangan yang dapat dimanfaatkan oleh penyerang seperti memberikan informasi penting, seperti kata sandi dari pengguna serta permintaan lain yang mengarahkan ke situs-situs berbahaya.
+
+### **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+
+**CHEKLIST 1: Membuat input form untuk menambahkan objek model pada app sebelumnya.**
+1. Sebelum saya memulai untuk membuat program, saya mengaktifkan _virtual environment_ terlebih dahulu. Setelah itu, saya melanjutkan dengan membuat `base.html` di dalam direktori baru bernama `templates` yang berada di root direktori. Agar `base.html` dapat digunakan, saya menambahkan `'DIRS': [BASE_DIR / 'templates'],` pada settings.py yang berada dalam direktori proyek django.
+2. Setelah itu, saya memodifikasi models.py untuk menambahkan import uuid yang digunakan agar setiap produk nantinya memiliki id yang unik yang sudah digenerate secara otomatis. Tak lupa, saya melakukan makemigrations dan migrate.
+3. Selanjutnya, saya menambahkan  `forms.py` dalam main untuk membuat struktur form yang nantinya akan menjadi modal utama untuk mengantarkan data ke template yang ada. Berikut isi dari forms.py:
+```
+from django.forms import ModelForm
+from main.models import Product
+
+class AddProductForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ["name", "price", "description", "conditions", "category", "brand", "gender"]
+```
+4. Setelah itu, saya menambahkan import `redirect` dalam `views.py` dan menambahkan fungsi bernama `create_product_form` yang digunakan untuk membuat/mengarahkan ke page untuk membuat form mengisi produk.  Fungsi inilah yang digunakan agar dapat menambahkan produk baru secara otomatis ketika men-submit data di form. Tak hanya itu, saya juga memodifikasi fungsi `show_main` sehingga nantinya dapat mendapatkan data dari product yang telah diisi melalui form.
+5. Setelah memeperbarui `views.py`, saya melakukan import fungsi tersebut ke `urls.py` dan menambahkannya ke `urlpatterns` 
+6. Saya juga memodifikasi `main.html` sehingga nanti bisa menampilkan produk-produk yang telah diisi dalam bentuk tabel. Lalu, saya juga menambahkan button untuk mengarahkan ke page pengisian produk baru.
+7. Setelah itu, saya menambahkan `create_product_form.html` yang nantinya menjadi tampilan untuk menambahkan produk baru.
+
+**CHEKLIST 2: Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.**
+1. Saya melakukannya dengan memodifiaksi `views.py` dengan melakukan import `HttpResponse` dan `serializers`. Setelah itu, saya menambahkan empat fungso baru, yaitu `show_xml`,  `show_json`, `show_xml_by_id`, `show_json_by_id`. Berikut isi dari masing-masing fungsi:
+```
+def show_xml(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_xml_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+Keempat fungsi tersebut memiliki variabel data yang nantinya digunakan untuk menyimpan hasil query. Untuk fungsi show_xml_by_id dan show_json_by_id menggunakan .filter(pk=id) untuk menyesuaikan dengan id yang ada. Keempat fungsi tersebut akan mengembalikan hasil query yang sesuai dengan format data.
+
+**CHEKLIST 3: Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.**
+1. Setelah menambahkan keempat fungsi ke `views.py`, saya melanjutkan dengan memodifikasi `urls.py`. Saya melanjutkannya dengan mengimpor fungs-fungsi tersebut.
+2. Setelah itu, saya melakuakn routing URL dengan menambahkan path pada urlpatterns. Berikut isi dari `urls.py`:
+```
+from django.urls import path
+from .views import show_main, create_product_form, show_xml, show_json, show_xml_by_id, show_json_by_id
+
+app_name = 'main'
+
+urlpatterns = [
+    path('', show_main, name='show_main'),
+    path('create-product-form', create_product_form, name='create_product_form'),
+    path('xml/', show_xml, name='show_xml'),
+    path('json/', show_json, name='show_json'),
+    path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'),
+    path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
+]
+```
+
+### **Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md**
+#### **AKSES URL HTML**
+<img width="1512" alt="Screenshot 2024-09-15 at 19 21 42" src="https://github.com/user-attachments/assets/72fd22ef-9601-415a-b7d3-52e325226852">
+
+#### **AKSES URL XML**
+<img width="1509" alt="Screenshot 2024-09-15 at 19 22 04" src="https://github.com/user-attachments/assets/7485b448-1a84-4df0-9a30-90d4d2254d21">
+
+#### **AKSES URL JSON**
+<img width="1512" alt="Screenshot 2024-09-15 at 19 22 11" src="https://github.com/user-attachments/assets/9d81352f-6e48-47d5-82d6-74e209a676d4">
+
+#### **AKSES URL XML BY ID**
+<img width="1512" alt="Screenshot 2024-09-15 at 19 22 53" src="https://github.com/user-attachments/assets/e76a611a-d922-4534-8114-666ab5b9491b">
+
+#### **AKSES URL JSON BY ID**
+<img width="1512" alt="Screenshot 2024-09-15 at 19 23 15" src="https://github.com/user-attachments/assets/6145b91b-62a7-405a-80bf-699e33253134">
+
 ## **TUGAS 2: Implementasi Model-View-Template (MVT) pada Django**
 
 ### **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
