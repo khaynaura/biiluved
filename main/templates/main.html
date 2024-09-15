@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <h1>{{app_name}}</h1>
 <h4>from preloved to beloved, an item needs to be loved too </h4>
 
@@ -6,3 +9,44 @@
 
 <h3>Class: </h3>
 <p>{{class}}</p>
+
+
+<h1> to be LUV's list </h1>
+
+{% if not products %}
+<p>No products available.</p>
+{% else %}
+<table style="border-spacing: 10px 5px;">
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Category</th>
+    <th>Conditions</th>
+    <th>Brand</th>
+    <th>Gender</th>
+  </tr>
+
+  {% comment %} 
+  {% endcomment %} 
+
+  {% for product in products %}
+  <tr>
+    <td>{{ product.name }}</td>
+    <td>{{ product.price }}</td>
+    <td>{{ product.category }}</td>
+    <td>{{ product.conditions }}</td>
+    <td>{{ product.brand }}</td>
+    <td>{{ product.gender }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<br />
+
+<a href="{% url 'main:create_product_form' %}">
+  <button>Add LUV's list </button>
+</a>
+
+
+{% endblock content %}

@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 class Product(models.Model):
@@ -8,20 +9,19 @@ class Product(models.Model):
         ("acc", "Accessories"),
         ("others", "Others")
     ]
-
     gender_choices = [
         ("women", "Women"),
         ("men", "Men"),
         ("unisex", "Unisex")
     ]
 
-
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
     price = models.IntegerField()
-    desc = models.TextField()
+    description = models.TextField()
     category = models.CharField(max_length=15,choices=category_choices)
     # image = to be added later
-    conditions = models.DecimalField
+    conditions = models.CharField(max_length=100, default= "no information")
     brand = models.CharField(max_length=100)
     gender = models.CharField(max_length=6,choices=gender_choices)
 
