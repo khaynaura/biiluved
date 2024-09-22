@@ -24,6 +24,7 @@
     <th>Conditions</th>
     <th>Brand</th>
     <th>Gender</th>
+    <th>Description</th>
   </tr>
 
   {% comment %} 
@@ -37,6 +38,7 @@
     <td>{{ product.conditions }}</td>
     <td>{{ product.brand }}</td>
     <td>{{ product.gender }}</td>
+    <td>{{ product.description }}</td>
   </tr>
   {% endfor %}
 </table>
@@ -47,6 +49,12 @@
 <a href="{% url 'main:create_product_form' %}">
   <button>Add LUV's list </button>
 </a>
+
+<a href="{% url 'main:logout' %}">
+  <button>Logout</button>
+</a>
+
+<h5>Sesi terakhir login: {{name}} - {{ last_login }}</h5>
 
 
 {% endblock content %}
