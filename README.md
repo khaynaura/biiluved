@@ -7,6 +7,27 @@
 
 Link to pws: http://khayla-naura-biiluved.pbp.cs.ui.ac.id/
 
+## **TUGAS 4: Implementasi Form dan Data Delivery pada Django**
+
+### **Apa perbedaan antara HttpResponseRedirect() dan redirect()**
+Secara garis besar `HttpsResponseRedirect()` dan `redirect()` tidak memiliki perbedaan yang signifikan karena kedua hal tersebut sama-sama berguna untuk mengarahkan user ke sebuah url. Akan tetapi,  `HttpsResponseRedirect()` hanya bisa menerima parameter dengan sebuah `url`. Di lain sisi,  `redirect()` bisa menerima parameter berupa `model`, `view`, dan `url`. Pada akhirnya,  `redirect()` juga akan menuju ke `HttpsResponseRedirect()`.  
+
+### **Jelaskan cara kerja penghubungan model Product dengan User!**
+
+Cara kerja hubungan antara model Product dan user dilakuakn dengan melakukan import modul `from django.contrib.auth.modesl import User` di file model Product. Setelah itu, kita bisa menggunakan ForeignKey dengan `user = models.ForeignKey(User, on_delete=models.CASCADE)`. Hal tersebut berguna untuk mengasosiasikan satu user dengan satu model product. 
+
+Setelah hal tersebut dilakukan, kita bisa melakukan modifikasi pada views.py khususnya pada function pembuatan product. Perubahan yang dilakukan ialah dengan melalukan assign user menjadi `request.user`. Hal tersebut berguna agar product tersebut tersimpan di user tersebut. Setelah itu, untuk menampilkan product yang dimiliki oleh user tersebut, kita bisa melakukan sort  `Product.objects.filter(user=request.user)`. 
+
+### **Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.**
+
+Django memiliki sebuah authentication system yang secara langsung telah menghandle authentication dan authorization. Auth system tersebut terdiri atas users, permissions (penandaan apakah user dapat melakukan tugas tertentu atau tidak), groups, konfigurasi passowords, form dan views untuk loggin, dan backend system. Auth system tersebut berada dalam module bernama `django-contrib-auth`. Secara langsung, Django telah memberikan konfigurasi untuk penggunaan modul tersebut pada `settings.py` yang tergenerate saat kita membuat proyek django.
+
+### **Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?**
+
+
+### **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+
+
 ## **TUGAS 3: Implementasi Form dan Data Delivery pada Django**
 
 ### **Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?**
