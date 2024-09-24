@@ -24,8 +24,31 @@ Django memiliki sebuah authentication system yang secara langsung telah menghand
 
 ### **Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?**
 
+Django menggunakan sessions dan cookie untuk mengingat pengguna yang telah login. Di sisi server, ketika user login, server akan membuat suatu sessions serta menyimpan session id-nya. Session id tersebut akan dikirim ke sisi user dalam bentuk cookie. Jika pengguna mengirim request baru, cookie tersebut akan dikirim kembali ke sisi server. Berdasarkan cookie yang berisi session id itu, server dapat mengidentifikasi pengguna yang sudah login tanpa meminta login ulang.
+
+Berdasarkan penjelasan sebelumnya, cookies digunakan untuk data managemenet, seperti session management. Selain itu, cookies digunakan juga untuk personalization, yaitu dapat membantu untuk mengetahui preferensi user sehingga dapat menampilkan hal-hal yang sesuai dengan preferensi tersebut. Selain itu, cookies juga berguna sebagai tracking. Tracking tersebut berguna untuk menyimpan data sementara, seperti contohnya dalam web e-commerce, kita bisa menyimpan sesuatu di shopping cart.
+
+Akan tetapi, tidak semua cookies aman untuk digunakan. Beberapa contoh permasalahan keamanan yang berkaitan dengan cookies diantaranya ialah cross-site scripting (xss), cookie hijacking, dan thrid-party tracking. Beberapa jenis tersebut dapat saja menyebarkan informasi berupa session id yang tidak dienskripsi hingga nantinya bisa menyebabkan penyalahgunaan session maupun informasi data pribadi.
 
 ### **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+
+1. Setelah mengaktifkan _virtual environment_, saya memodifikasi `views.py` dengan melakukan import module yang berkaitan dengan system auth, yaitu `UserCreationForm` dan `messages`. Lalu, saya menambahkan function baru, yaitu register yang berguna untuk memberikan form registrasi user. Setelah itu, saya menambahkan file `register.html` pada templates yang berguna untuk menjadi tampilan saat pengguna melihat form register. Saya juga menambahkan import `register` dan menambahkan path `register` pada urlpatterns yang berada pada `urls.py`
+
+2. Setelah membuat bagian register, saya memodifikasi `views.py` dengan melakukan import module yang berkaitan dengan system auth, yaitu `AuthenticationForm`, `authenticate`, dan `login`. Lalu, saya menambahkan function baru, yaitu login_user yang berguna untuk memberikan form login user. Setelah itu, saya menambahkan file `login.html` pada templates yang berguna untuk menjadi tampilan saat pengguna melihat form login. Saya juga menambahkan import `login_user` dan menambahkan path `login` pada urlpatterns yang berada pada `urls.py`
+
+2. Setelah membuat bagian login, saya memodifikasi `views.py` dengan melakukan import module yang berkaitan dengan system auth, yaitu `logout`. Lalu, saya menambahkan function baru, yaitu logout_user yang berguna untuk memberikan form logout user. Setelah itu, saya menambahkan button `logout` pada `main.html` di templates. Saya juga menambahkan import `logout_user` dan menambahkan path `logout` pada urlpatterns yang berada pada `urls.py`
+
+3. Saya juga menambahkan `login_required` pada `views.py` agar pengguna yang masuk harus mempunyai akun dan login terlebih dahulu.
+
+4. Setelah membuat bagian autentikasi, saya memodifikasi `views.py` dengan melakukan import module yang digunakan untuk menggunakan data dari cookies untuk menampilkan data last login. Lalu, saya memodifikasi function `login_user`, khususnya pada bagian `is form.is_valid()` dengan menambahkan cookie yang bernama last_login. Setelah itu, saya memodifikasi context pada function `show_main` agar menampilkan last_login. Selain itu, saya juga memodifikasi function `logout_user` dengan menambahkan kode yang akan menghapus cookie last_login ketika user logout. Saya juga menambahkan data login terakhir user pada `main.html`
+   
+5. Setelah memodifikasi bagian autentikasi dan cookies, saya menyambungkan model Product dengan user. Saya memodifikasi `models.py` dengan melakukan import modul `from django.contrib.auth.modesl import User`. Setelah itu, saya menambahkan kode `user = models.ForeignKey(User, on_delete=models.CASCADE)` yang erguna untuk mengasosiasikan satu user dengan satu model product. Setelah itu, saya melakukan modifikasi pada `views.py` pada function `create_product_form`. Perubahan yang dilakukan ialah dengan melalukan assign user menjadi `request.user` agar product tersebut tersimpan di user tersebut. Setelah itu, untuk menampilkan product yang dimiliki oleh user tersebut, saya memodfikasi function `show_main` dengan melakukan sort  `product list = Product.objects.filter(user=request.user)`.
+
+6. Setelah menghubungkan model Product dengan user, saya membuat 2 user baru dengan masing-masing user memiliki 3 dummy data.
+
+   
+<img width="917" alt="GIRLISSOCONFUSING" src="https://github.com/user-attachments/assets/ccca258d-3b8c-46c9-a92d-2fcbf2295049">
+<img width="1090" alt="miawmiawmiaw" src="https://github.com/user-attachments/assets/511ccc02-3c23-4f4d-8a6f-343d050e5d16">
 
 
 ## **TUGAS 3: Implementasi Form dan Data Delivery pada Django**
