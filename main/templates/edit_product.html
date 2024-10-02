@@ -1,9 +1,7 @@
-
 {% extends 'base.html' %}
 {% load static %}
 {% block meta %}
-<title>add LUV's list</title>
-
+<title>Edit Product</title>
 {% endblock meta %}
 
 {% block content %}
@@ -14,24 +12,22 @@
       font-family: 'LabelFont';
       src: url('/static/font/VCR_OSD_MONO_1.001.ttf') format('opentype');
     }
-  
 
     .label-font {
       font-family: 'LabelFont', sans-serif !important;
     }
 </style>
 
-
 <div class="flex flex-col min-h-screen bg-gray-100">
   <div class="container mx-auto px-4 py-8 mt-16 max-w-xl">
-    <h1 class="text-3xl font-bold text-center mb-8 text-[#e01073] label-font">add LUV product !</h1>
+    <h1 class="text-3xl font-bold text-center mb-8 text-[#e01073] label-font">Edit Product</h1>
   
     <div class="bg-[#FFCDEA] shadow-md rounded-lg p-6 form-style border-2 border-[#FB9AD1]">
       <form method="POST" class="space-y-6">
         {% csrf_token %}
         {% for field in form %}
           <div class="flex flex-col">
-            <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-gray-700">
+            <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-gray-700 label-font">
               {{ field.label }}
             </label>
             <div class="w-full">
@@ -45,16 +41,15 @@
             {% endfor %}
           </div>
         {% endfor %}
-        <div class="flex justify-between mt-6">
-          <!-- Create Button -->
-          <button type="submit" class="bg-[#FB9AD1] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#F46AB6] transition duration-300 ease-in-out w-full">
-            Create New Product
+        <div class="flex justify-center mt-6">
+          <button type="submit" class="bg-[#FB9AD1] hover:bg-[#F46AB6] text-white font-semibold px-6 py-3 rounded-lg transition duration-300 ease-in-out w-full">
+            Edit Product
           </button>
         </div>
 
         <div class="flex justify-center mt-4">
-          
-          <a href="{% url 'main:show_main' %}" class="bg-red-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-red-600 transition duration-300 ease-in-out">
+   
+          <a href="{% url 'main:show_main %}" class="bg-red-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-red-600 transition duration-300 ease-in-out">
             Cancel
           </a>
         </div>

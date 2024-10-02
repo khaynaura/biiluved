@@ -1,0 +1,139 @@
+<style>
+   
+    @font-face {
+      font-family: 'MyCustomFont';
+      src: url('/static/font/HamIsCute-Regular.otf') format('opentype');
+    }
+
+       
+    .custom-font {
+      font-family: 'MyCustomFont', sans-serif !important;
+    }
+
+
+    @font-face {
+      font-family: 'LabelFont';
+      src: url('/static/font/VCR_OSD_MONO_1.001.ttf') format('opentype');
+    }
+  
+
+    .label-font {
+      font-family: 'LabelFont', sans-serif !important;
+    }
+  
+  
+    .dashed-line {
+      border: 0;
+      border-top: 2px dashed #e01073;
+      margin: 10px 0;
+    }
+  
+    
+    .id-card {
+      display: flex;
+      flex-direction: row;
+      background-color: #FFCDEA;
+      border: 2px solid #FB9AD1;
+      padding: 16px;
+      width: 350px;
+      border-radius: 12px;
+      position: relative;
+    }
+  
+    .id-card img {
+      width: 120px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+  
+    .id-card-details {
+      padding-left: 16px;
+      flex-grow: 1;
+    }
+  
+    .id-card h3, .id-card p {
+      margin: 0;
+      padding: 4px 0;
+    }
+  
+  
+    .action-buttons {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 8px;
+    }
+  
+    .action-buttons a {
+      background-color: #FB9AD1;
+      color: white;
+      padding: 4px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+  
+    .action-buttons a:hover {
+      background-color: #F46AB6;
+    }
+  
+    .delete-button {
+      background-color: #F87171;
+    }
+  
+    .delete-button:hover {
+      background-color: #E53E3E;
+    }
+  
+    .action-buttons svg {
+      width: 16px;
+      height: 16px;
+    }
+  </style>
+  
+  <div class="flex justify-center flex-wrap gap-2">
+    <div class="id-card">
+      
+      <div class="id-card-details">
+      
+        <h3 class="font-bold text-xl text-[#e01073] custom-font">{{ product.name }}</h3>
+        <h3 class="font-bold text-xl text-[#e01073] custom-font">by {{ product.brand }}</h3>
+        <p class="font-bold text-lg text-gray-800 custom-font">{{ product.price }}</p>
+  
+       
+        <hr class="dashed-line">
+  
+        
+        <p class="font-semibold text-sm text-[#e01073] label-font">Description</p>
+        <p class="text-gray-800 text-sm label-font">{{ product.description }}</p>
+  
+        <p class="font-semibold text-sm text-[#e01073] label-font">Conditions</p>
+        <p class="text-gray-800 text-sm label-font">{{ product.conditions }}</p>
+  
+        <p class="font-semibold text-sm text-[#e01073] label-font">Category</p>
+        <p class="text-gray-800 text-sm label-font">{{ product.category }}</p>
+  
+        <p class="font-semibold text-sm text-[#e01073] label-font">Gender</p>
+        <p class="text-gray-800 text-sm label-font">{{ product.gender }}</p>
+      </div>
+  
+     
+      <div class="action-buttons">
+        <a href="{% url 'main:edit_product' product.pk %}" class="edit-button">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4v1m0 8v6a2 2 0 002 2h6m-4 0h-2a2 2 0 01-2-2v-6M12 4l4 4m0-4H7a2 2 0 00-2 2v6m0 4h6" />
+          </svg>
+        </a>
+        <a href="{% url 'main:delete_product' product.pk %}" class="delete-button">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  

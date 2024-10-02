@@ -1,0 +1,45 @@
+{% load static %}
+
+<div class="flex flex-col sm:flex-row items-center justify-between space-x-0 sm:space-x-4 p-6 bg-pink-100 shadow-lg rounded-lg mx-auto max-w-4xl">
+  
+  
+  <div class="flex items-center space-x-4">
+   
+    <div class="w-24 h-24">
+      <img src="{% static 'image/userpics.JPG' %}" alt="User Image" class="rounded-full border-2 border-[#FB9AD1] object-cover w-full h-full">
+    </div>
+
+   
+    <div class="text-left">
+      <h2 class="text-2xl font-bold text-[#e01073]">hi, LUV!</h2>
+      <p class="text-md text-[#e01073]">welcome back!</p>
+    </div>
+  </div>
+
+  
+  <div class="flex flex-col sm:flex-row items-center justify-between mt-4 sm:mt-0 w-full sm:w-auto">
+    <div class="flex flex-col sm:flex-row items-center sm:space-x-8">
+      
+      <div class="flex flex-col sm:pr-8 sm:border-r-2 border-[#FB9AD1]">
+        <h3 class="text-left text-lg sm:text-xl font-bold text-gray-800 uppercase tracking-wider">
+          {{ name }}
+        </h3>
+        <h4 class="text-left font-semibold text-gray-600 mt-1">{{ npm }}</h4>
+      </div>
+
+     
+      <div class="mt-4 sm:mt-0 sm:ml-4 pl-0 sm:pl-4">
+        <h3 class="text-left text-lg font-semibold text-gray-800">{{ class }}</h3>
+      </div>
+    </div>
+  
+   
+    <div class="mt-4 sm:mt-0 flex items-center bg-[#F9E4F0] px-4 py-2 sm:px-8 rounded-lg shadow-inner">
+      <h3 class="text-[#e01073] text-center text-sm sm:text-base">
+        Last Login: {{ last_login }}
+      </h3>
+    </div>
+  </div>
+
+</div>
+

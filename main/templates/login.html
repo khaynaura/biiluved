@@ -1,32 +1,54 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block meta %}
 <title>Login</title>
 {% endblock meta %}
 
 {% block content %}
-<div class="login">
-  <h1>Login</h1>
-
-  <form method="POST" action="">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input class="btn login_btn" type="submit" value="Login" /></td>
-      </tr>
-    </table>
-  </form>
-
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} Don't have an account yet?
-  <a href="{% url 'main:register' %}">Register Now</a>
+<div class="min-h-screen flex items-center justify-center bg-[#FFCDEA] px-8 py-12">
+    <div class="max-w-lg w-full bg-white rounded-lg shadow-lg p-6"> <!-- Card menyesuaikan ukuran -->
+        
+        <div class="flex justify-center mb-4">
+            <img class="h-56 w-56" src="{% static 'image/biglogo.png' %}" alt="BIILUVED Logo"> <!-- Membuat logo lebih besar -->
+        </div>
+        
+        <h2 class="text-2xl font-bold text-center text-[#FB9AD1] mb-4"> <!-- Membuat judul lebih kecil -->
+            Login to your account
+        </h2>
+        
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="space-y-3">
+                <div>
+                    <label for="username" class="sr-only">Username</label>
+                    <input id="username" name="username" type="text" required
+                        class="appearance-none block w-full px-3 py-2 border border-[#FB9AD1] text-gray-900 rounded-full focus:outline-none focus:ring-[#FB9AD1] focus:border-[#FB9AD1]" 
+                        placeholder="your username, luv!">
+                </div>
+                <div>
+                    <label for="password" class="sr-only">Password</label>
+                    <input id="password" name="password" type="password" required
+                        class="appearance-none block w-full px-3 py-2 border border-[#FB9AD1] text-gray-900 rounded-full focus:outline-none focus:ring-[#FB9AD1] focus:border-[#FB9AD1]" 
+                        placeholder="your password, luv!">
+                </div>
+            </div>
+            <div class="mt-4">
+                <button type="submit" 
+                    class="w-full bg-[#FB9AD1] hover:bg-pink-500 text-white py-2 px-4 rounded-full transition-transform transform hover:scale-105">
+                    Sign in
+                </button>
+            </div>
+        </form>
+        
+        <div class="text-center mt-4">
+            <p class="text-sm text-gray-600">
+                Don't have an account yet?
+                <a href="{% url 'main:register' %}" class="text-[#FB9AD1] hover:text-pink-500">
+                    Register Now
+                </a>
+            </p>
+        </div>
+    </div>
 </div>
-
 {% endblock content %}
