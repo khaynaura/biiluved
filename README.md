@@ -12,18 +12,23 @@ Link to pws: http://khayla-naura-biiluved.pbp.cs.ui.ac.id/
 ### **Jika terdapat beberpa CSS selector untuk satu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!**
 CSS selector memiliki urutan prioritas, yang mana prioritas tertinggi lah yag akan diambil atau di select sebagai pilihan dalam CSS. 
 Urutan tersebut ialah:
-   1. Inline styles atau yang didefinisikan pada line yang dituju, seperti
-         `blabla`
-   2. ID selectors:
-   3. Classes selector:
-   4. Element selector"
+   1. Inline styles: Biasanya menggunakan atribute `style`.
+         contoh: `<p style="color:aqua> Hi!!</p>`
+   2. ID selectors: Biasanya, penggunaannya diikuti dengan `#`.
+         contoh:   `#header {backround-color:red;}` 
+   3. Classes selector: Biasanya, penggunaannya diikuti dengan `.`.
+         contoh:   `.text {backround-color:red;}` 
+   4. Element selector: Seperti tag HTML biasa, yaitu `p`, `div`, `h1`.
+
+Akan tetapi, perlu diingat bahwa jika terdapat suatu elemen yang menggunakan `!important`, maka ia akan mendapatkan prioritas paling tinggi. 
+contoh: `.text {color: black !important` --> maka akan menjadi prioritas tertinggi.
 
 ### **Mengapa _responsive design_ menjadi konsep yang penting dalam pengembengan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan _responsive design_**
 _Responsive design_ sangat diperlukan untuk memudahkan pengembangan web sehingga nantinya web tersebut dapat terakses secara optimal di setiap jenis devices, khususnya yang berkaitan dengan resizing, scrolling, zooming. Jadi, semua hal dapat menyesuaikan dengan screen size devices. 
 
 Sebagai pengembang web, kita tidak tahu user akan membuka website dalam device apa. Dengan _responsive design_, kita bisa memastikan bahwa website dapat terakses dan mempertahankan _user experience_ yang baik. Selain itu, hal ini nantinya mempermudah pengembangan web sehingga jika ada update atau perbaikan web, pengembangan hanya merubah satu desain saja dan tidak perlu membuat desain lain untuk devices lain. Hal tersebut tentunya dapat mengurani dana pengembamgan web serta membudahkan pengorganisasian pengembangan web.
 
-Contoh aplikasi yang sudah menerapkan _responsive design_ diantaranya ialah dan yang belum ialah
+Contoh aplikasi yang sudah menerapkan _responsive design_ seperti Tokopedia, Spotify, dan sebagain besar aplikasi besar lainnya. Jarang dari aplikasi besar yang belum menerapkan _responsive design_ kemungkinannya ialah aplikasi yang masih dalam pengembangan skala kecil.
 
 ### **Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!**
 
