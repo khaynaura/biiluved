@@ -37,12 +37,18 @@ Flex box merupakan sebuah layout yang mengatur elemen hanya dalam satu deminsi, 
 
 Di lain sisi, grid layout merupakan layout dua dimensi sehingga memungkinkan untuk mengatur elemen dengan baris dan kolom segaligus. Grid layout memiliki beberapa properti, diantaranya ialah _display_, _grid-template columns, grid-template-rows, grid-template-areas, grid-template, column gap, row-gap, grid-column-gap, grid-row-gap, gap, grid-gap, justify-items, align-items, place-items_, dan masih banyak lagi. Maka dari itu, grid layout dapat digunakan untuk mengatur secara horizontal maupun vertikal yang bisa membantu dalam mengatur komponen yang memerlukan layout dengan lebih kompleks. 
 
+### **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!**
 
-      
-
-
-
-
+1. Menambahkan views dan url pattern untuk menjalankan fitur edit dan delete products.
+2. Setelah melakukan hal tersebut, menambahkan file html untuk edit dan menambahkan fitur delete di main.
+3. Lalu, saya memerbarui `base.html` agar dapat menyesuaikan dengan css framework tailwind
+4. Setelah melakukan hal tersebut, saya memulai dengan mendesain web dengan mengikuti alur awal sesuai dengan tutorial. Setelah itu, saya mulai mengkostumisasi sesuai dengan keinginan saya.
+5. Di halaman login dan register, saya menambahkan logo dan mengkostumsasi warna agar sesuai dengan theme.
+6. Setelah itu, saya mendesain navbar agar sesuai dengan yang saya inginkan, yaitu home page, add product, dan page untuk melihat semua produk.
+7. Setelah itu, saya mendesain `user_info.html` untuk menyesuaikan dengan keinginan, yaitu menambahkan foto untuk user (masih static) dan menambahkan kostumisasi agar cukup terlihat seperti id card.
+8. Setelah itu, saya mengkostumisasi `card_product.html` agar menampilkan card mirip dengan id card dengan kostumisasi font.
+9. Setelah menyelesaikan dua hal tersebut, saya mengubah main untuk menambahkan `user_info.html` dan `card_product.html`.
+10. Setelah itu, saya menambahkan views dan url pattern baru yang merujuk ke fungsi yang nantinya mengarahkan ke halaman yang akan menampilkan semua product yang diupload dari berbagai user. Setelah itu, saya menambahkan `all_prods.html` dan `card_all.htm`l. Kedua hal tersebut sebenarnya mirip dengan `main.html` dan `card_products.html`. Perbedaannya ialah `all_prods.html` akan menampilkan semua product dan user tidak bisa mengedit product.  
 
 
 ## **TUGAS 4: Implementasi Form dan Data Delivery pada Django**
