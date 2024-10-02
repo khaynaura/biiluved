@@ -7,6 +7,44 @@
 
 Link to pws: http://khayla-naura-biiluved.pbp.cs.ui.ac.id/
 
+## **TUGAS 5: Implementasi Form dan Data Delivery pada Django**
+
+### **Jika terdapat beberpa CSS selector untuk satu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!**
+CSS selector memiliki urutan prioritas, yang mana prioritas tertinggi lah yag akan diambil atau di select sebagai pilihan dalam CSS. 
+Urutan tersebut ialah:
+   1. Inline styles atau yang didefinisikan pada line yang dituju, seperti
+         `blabla`
+   2. ID selectors:
+   3. Classes selector:
+   4. Element selector"
+
+### **Mengapa _responsive design_ menjadi konsep yang penting dalam pengembengan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan _responsive design_**
+_Responsive design_ sangat diperlukan untuk memudahkan pengembangan web sehingga nantinya web tersebut dapat terakses secara optimal di setiap jenis devices, khususnya yang berkaitan dengan resizing, scrolling, zooming. Jadi, semua hal dapat menyesuaikan dengan screen size devices. 
+
+Sebagai pengembang web, kita tidak tahu user akan membuka website dalam device apa. Dengan _responsive design_, kita bisa memastikan bahwa website dapat terakses dan mempertahankan _user experience_ yang baik. Selain itu, hal ini nantinya mempermudah pengembangan web sehingga jika ada update atau perbaikan web, pengembangan hanya merubah satu desain saja dan tidak perlu membuat desain lain untuk devices lain. Hal tersebut tentunya dapat mengurani dana pengembamgan web serta membudahkan pengorganisasian pengembangan web.
+
+Contoh aplikasi yang sudah menerapkan _responsive design_ diantaranya ialah dan yang belum ialah
+
+### **Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!**
+
+Margin merupakan ruang yang berada di sekitar border yang mengontrol bagian luar dari elemen tersebut, seperti jarak elemen tersebut dengan elemen lain. Di lain sisi, _padding_ merupakan jarak antara border dengan elemen yang mengontrol ruang di dalam elemen, seperti ukuran jarak border ke elemen. Secara garis besar, untuk mengatur jarak/spacing antar elemen, kita bisa menggunakan _margin_. Jika mengatur ruang elemen tersebut, kita menggunakan _padding_. Sedangkan border hanya digunakan untuk membatasi atau menghias suatu elemen. 
+
+Untuk mengimplementasikan margin atau margin-top, margin-right, margin-bottom, dan margin left yang dapat disesuaikan dengan kebutuhan. Penulisannya ialah `(margin: 20px)` atau `(margin-left: 20 px)` atau `(margin: 20px 40px;)`. Di lain sisi untuk padding, padding juga memiliki padding-top, padding-right, padding-bottom, dan padding-left. Penulisannya ialah `content (padding:20px)` atau `(padding-bottom: 20 px)` atau `(padding: 20px 40px;)`. Untuk border, kita memiliki banyak jenis pilihan border salah satunya ialah dengan `p.solid {border-style: solid;}`
+
+### **Jelaskan konsep flex box dan grid layout beserta kegunaannya!**
+
+Flex box merupakan sebuah layout yang mengatur elemen hanya dalam satu deminsi, yaitu dalam cara baris atau kolom. Flex box memiliki beberapa properti, diantaranya ialah _display_, _flex-direction_, _flex-wrap_, _flex-flow_, _'align-items'_, '_align content'_, _gap, row-gap, column-gap_. Flex box dapat digunakan untuk membuat layout yang memang hanya satu dimensi, seperti hanya secara horizontal saja seperti tombol kecil.
+
+Di lain sisi, grid layout merupakan layout dua dimensi sehingga memungkinkan untuk mengatur elemen dengan baris dan kolom segaligus. Grid layout memiliki beberapa properti, diantaranya ialah _display_, _grid-template columns, grid-template-rows, grid-template-areas, grid-template, column gap, row-gap, grid-column-gap, grid-row-gap, gap, grid-gap, justify-items, align-items, place-items_, dan masih banyak lagi. Maka dari itu, grid layout dapat digunakan untuk mengatur secara horizontal maupun vertikal yang bisa membantu dalam mengatur komponen yang memerlukan layout dengan lebih kompleks. 
+
+
+      
+
+
+
+
+
+
 ## **TUGAS 4: Implementasi Form dan Data Delivery pada Django**
 
 ### **Apa perbedaan antara HttpResponseRedirect() dan redirect()**
