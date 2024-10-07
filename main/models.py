@@ -30,3 +30,4 @@ class Product(models.Model):
 
     # @property
     # to be added later
+

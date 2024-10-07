@@ -26,9 +26,9 @@
     <p class="text-center text-gray-600 mt-4">all products are LUVED</p>
   </div>
   {% else %}
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-[calc(100%-4rem)] mx-auto my-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 w-full max-w-[calc(100%-4rem)] mx-auto my-8">
     {% for product in products %}
-        {% include 'card_product.html' with product=product %}
+        {% include 'card_all.html' with product=product %}
     {% endfor %}
   </div>
   {% endif %}

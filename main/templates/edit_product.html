@@ -41,18 +41,18 @@
             {% endfor %}
           </div>
         {% endfor %}
-        <div class="flex justify-center mt-6">
-          <button type="submit" class="bg-[#FB9AD1] hover:bg-[#F46AB6] text-white font-semibold px-6 py-3 rounded-lg transition duration-300 ease-in-out w-full">
-            Edit Product
-          </button>
-        </div>
 
-        <div class="flex justify-center mt-4">
-   
-          <a href="{% url 'main:show_main %}" class="bg-red-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-red-600 transition duration-300 ease-in-out">
-            Cancel
-          </a>
-        </div>
+
+       <div class="flex justify-between mt-6">
+        <a href="javascript:history.back()" class="bg-[#FB9AD1] hover:bg-[#F46AB6] text-white font-semibold px-6 py-3 rounded-lg transition duration-300 ease-in-out">
+          Back
+        </a>
+        <button type="submit" class="bg-[#FB9AD1] hover:bg-[#F46AB6] text-white font-semibold px-6 py-3 rounded-lg transition duration-300 ease-in-out">
+          Edit Product
+        </button>
+      </div>
+
+
       </form>
     </div>
   </div>

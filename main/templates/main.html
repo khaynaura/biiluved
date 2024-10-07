@@ -3,6 +3,7 @@
 
 {% block meta %}
 <title>biiLUVed</title>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
 {% endblock meta %}
 
 {% block content %}
@@ -16,24 +17,290 @@
 
  
   <div class="flex justify-end mb-6">
-    <a href="{% url 'main:create_product_form' %}" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 mx-8 mt-5 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-      add LUV!
-    </a>
-  </div>
 
- 
-  {% if not products %}
-  <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
-    <img src="{% static 'image/luved.png' %}" alt="LUVED" class="w-32 h-32 mb-4"/>
-    <p class="text-center text-gray-600 mt-4">all products are LUVED</p>
   </div>
-  {% else %}
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-[calc(100%-4rem)] mx-auto my-8">
-    {% for product in products %}
-        {% include 'card_product.html' with product=product %}
-    {% endfor %}
-  </div>
-  {% endif %}
 </div>
+
+  
+
+    <!-- Add Product Buttons -->
+    <div class="flex justify-end mb-6 space-x-4 mt-12">
+      <a href="{% url 'main:create_product_form' %}" class="bg-gradient-to-r from-pink-500 to-pink-700 hover:from-pink-400 hover:to-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out">
+        add LUV ♡
+      </a>
+      <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="bg-gradient-to-r from-pink-500 to-pink-700 hover:from-pink-400 hover:to-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out" onclick="showModal();">
+        add LUV ♡ by AJAX
+      </button>
+    </div>
+
+
+    <!-- Product Cards -->
+    <div id="product_cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6"></div>
+
+
+    <!-- Modal for Add Product AJAX -->
+    <div id="crudModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+      <div id="crudModalContent" class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+        <!-- Modal Header -->
+      <div class="flex items-center justify-between p-4 border-b rounded-t bg-pink-200">
+        <h3 class="text-xl font-semibold text-gray-900">Add New Product</h3>
+        <button type="button" class="text-gray-400 bg-transparent hover:bg-pink-300 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeModalBtn">
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 111.414 1.414L11.414 10l4.293 4.293a1 1 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+
+        <!-- Modal Body -->
+        <div class="px-6 py-4 space-y-6">
+          <form id="productForm">
+            <div class="mb-4">
+              <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+              <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter your LUV product" required>
+            </div>
+    
+            <!-- Price field -->
+            <div class="mb-4">
+              <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+              <input type="number" id="price" name="price" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter price" required>
+            </div>
+    
+            <!-- Description field -->
+            <div class="mb-4">
+              <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+              <textarea id="description" name="description" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Describe your product" required></textarea>
+            </div>
+    
+            <!-- Conditions field -->
+            <div class="mb-4">
+              <label for="conditions" class="block text-sm font-medium text-gray-700">Conditions</label>
+              <input type="text" id="conditions" name="conditions" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter product condition" required>
+            </div>
+    
+            <!-- Category dropdown -->
+            <div class="mb-4">
+              <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+              <select id="category" name="category" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" required>
+                <option value="" disabled selected>Select a category</option>
+                <option value="clothing">Clothing</option>
+                <option value="shoes">Shoes</option>
+                <option value="bags">Bags</option>
+                <option value="accessories">Accessories</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+    
+            <!-- Brand field -->
+            <div class="mb-4">
+              <label for="brand" class="block text-sm font-medium text-gray-700">Brand</label>
+              <input type="text" id="brand" name="brand" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter brand name" required>
+            </div>
+    
+            <!-- Gender dropdown -->
+            <div class="mb-4">
+              <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+              <select id="gender" name="gender" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" required>
+                <option value="" disabled selected>Select gender</option>
+                <option value="unisex">Unisex</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t border-gray-200 rounded-b justify-center md:justify-end">
+          <button type="button" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelButton">Cancel</button>
+          <button type="button" id="submitProduct" class="bg-pink-700 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded-lg">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function addProduct() {
+    fetch("{% url 'main:add_product_entry_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#productForm')),
+    })
+    .then(response => refreshProductEntries());
+
+    document.getElementById("productForm").reset(); 
+    document.querySelector("[data-modal-toggle='crudModal']").click();
+
+    return false;
+  }
+
+  async function getProductEntries() {
+    return fetch("{% url 'main:show_json' %}").then((res) => res.json());
+  }
+
+  async function refreshProductEntries() {
+    document.getElementById("product_cards").innerHTML = "";
+    const productEntries = await getProductEntries();
+
+    let htmlString = "";
+    if (productEntries.length === 0) {
+      htmlString = `
+        <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+          <img src="{% static 'image/luved.png' %}" alt="Sad face" class="w-32 h-32 mb-4"/>
+          <p class="text-center text-gray-600 mt-4">all are LUVED ♡!</p>
+        </div>
+      `;
+    } else {
+      productEntries.forEach((item) => {
+        const name = DOMPurify.sanitize(item.fields.name);
+        const price = DOMPurify.sanitize(item.fields.price);
+        const description = DOMPurify.sanitize(item.fields.description);
+        const conditions = DOMPurify.sanitize(item.fields.conditions);
+        const category = DOMPurify.sanitize(item.fields.category);
+        const brand = DOMPurify.sanitize(item.fields.brand);
+        const gender = DOMPurify.sanitize(item.fields.gender);
+
+
+
+        htmlString += `
+          <style>
+            @font-face {
+              font-family: 'MyCustomFont';
+              src: url('/static/font/HamIsCute-Regular.otf') format('opentype');
+            }
+            .custom-font {
+              font-family: 'MyCustomFont', sans-serif !important;
+            }
+            @font-face {
+              font-family: 'LabelFont';
+              src: url('/static/font/VCR_OSD_MONO_1.001.ttf') format('opentype');
+            }
+            .label-font {
+              font-family: 'LabelFont', sans-serif !important;
+            }
+            .dashed-line {
+              border: 0;
+              border-top: 2px dashed #e01073;
+              margin: 10px 0;
+            }
+            .id-card {
+              display: flex;
+              flex-direction: row;
+              background-color: #FFCDEA;
+              border: 2px solid #FB9AD1;
+              padding: 16px;
+              width: 350px;
+              border-radius: 12px;
+              position: relative;
+            }
+            .id-card img {
+              width: 120px;
+              height: 150px;
+              object-fit: cover;
+              border-radius: 6px;
+            }
+            .id-card-details {
+              padding-left: 16px;
+              flex-grow: 1;
+            }
+            .id-card h3, .id-card p {
+              margin: 0;
+              padding: 4px 0;
+            }
+            .action-buttons {
+              position: absolute;
+              top: 10px;
+              right: 10px;
+              display: flex;
+              gap: 8px;
+            }
+            .action-buttons a {
+              background-color: #FB9AD1;
+              color: white;
+              padding: 4px;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: background-color 0.3s ease;
+            }
+            .action-buttons a:hover {
+              background-color: #F46AB6;
+            }
+            .delete-button {
+              background-color: #F87171;
+            }
+            .delete-button:hover {
+              background-color: #E53E3E;
+            }
+            .action-buttons svg {
+              width: 16px;
+              height: 16px;
+            }
+          </style>
+          <div class="flex justify-center flex-wrap gap-2">
+            <div class="id-card">
+              <div class="id-card-details">
+                <h3 class="font-bold text-xl text-[#e01073] custom-font">${item.fields.name || 'No Name'}</h3>
+                <h3 class="font-bold text-xl text-[#e01073] custom-font">by ${item.fields.brand || 'Unknown'}</h3>
+                <p class="font-bold text-lg text-gray-800 custom-font">${item.fields.price || 'Price not available'}</p>
+                <hr class="dashed-line">
+                <p class="font-semibold text-sm text-[#e01073] label-font">Description</p>
+                <p class="text-gray-800 text-sm label-font">${item.fields.description || 'No description available'}</p>
+                <p class="font-semibold text-sm text-[#e01073] label-font">Conditions</p>
+                <p class="text-gray-800 text-sm label-font">${item.fields.conditions || 'Condition not specified'}</p>
+                <p class="font-semibold text-sm text-[#e01073] label-font">Category</p>
+                <p class="text-gray-800 text-sm label-font">${item.fields.category || 'Category not available'}</p>
+                <p class="font-semibold text-sm text-[#e01073] label-font">Gender</p>
+                <p class="text-gray-800 text-sm label-font">${item.fields.gender || 'Gender not specified'}</p>
+              </div>
+              <div class="action-buttons">
+                <a href="/edit-product/${item.pk}" class="edit-button">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4v1m0 8v6a2 2 0 002 2h6m-4 0h-2a2 2 0 01-2-2v-6M12 4l4 4m0-4H7a2 2 0 00-2 2v6m0 4h6" />
+                  </svg>
+                </a>
+                <a href="/delete/${item.pk}" class="delete-button">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+    document.getElementById("product_cards").innerHTML = htmlString;
+  }
+
+  refreshProductEntries();
+
+  function showModal() {
+    const modal = document.getElementById('crudModal');
+    const modalContent = document.getElementById('crudModalContent');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modalContent.classList.remove('opacity-0', 'scale-95');
+      modalContent.classList.add('opacity-100', 'scale-100');
+    }, 50);
+  }
+
+  function hideModal() {
+    const modal = document.getElementById('crudModal');
+    const modalContent = document.getElementById('crudModalContent');
+    modalContent.classList.remove('opacity-100', 'scale-100');
+    modalContent.classList.add('opacity-0', 'scale-95');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 150);
+  }
+
+  document.getElementById("cancelButton").addEventListener("click", hideModal);
+  document.getElementById("closeModalBtn").addEventListener("click", hideModal);
+
+  document.getElementById("submitProduct").onclick = addProduct;
+
+</script>
 
 {% endblock content %}
