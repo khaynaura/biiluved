@@ -7,6 +7,30 @@
 
 Link to pws: http://khayla-naura-biiluved.pbp.cs.ui.ac.id/
 
+## **TUGAS 6: JavaScript dan AJAX**
+
+### **Jelaskan manfaat dari pengunaan JavaScript dalam pengembangan aplikasi web!**
+Javascript memberikan banyak manfaat yang dapat memudahkan pengembangan aplikasi web. Diantaranya ialah:
+1. Javascript dapat menciptakan aplikasi web yang interaktif dan dinamis, seperti pembuatan animasi. Selain itu, Javascript juga membantu untuk membuat web menjadi lebih responsif.
+2. Javascript mempunyai fitur pemograman asynchronous seperti AJAX dan fetch yang dapat memudahkan pengambilan data secara dinamis.
+3. Javascript juga memastikan validasi data
+4. Javascript dapat terintegrasi secara mudah dan HTML dan CSS yang memudahkan pengembangan.
+   
+### **Jelaskan fungsi dari pengunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?**
+`await` digunakan untuk memnghentikan eksekusi kode sampai `fetch` nantinya selesai dan data dapat diakses. Jika kita tidak menggunakan `await`, hasil dari `fetch` yang belum selesai dapat menyebabkan data belum tersedia hingga tidak bisa diakses yang dapat berujung ke error.
+
+### **Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?**
+Django menggunakan tiken CSRF untuk melindungi sistem dari serangan yang mungkin muncul dari permintaan POST. Akan tetapi, token CSRF sering tidak disertakan secara otomatis dalam AJAX POST yang membuat permintaan ditolak. Maka dari itu, decorator `csrf_exempt` digunakan untuk menonaktifkan pengecekan CSRF sehingga AJAX POST dapat dilakukan.
+
+### **Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontedn saja?**
+Validasi dan pembersihan data di backend sangat penting untuk memastikan keamanan web. Hal tersebut dapat mencegah serangan seperti Cross-Site Scripting (XSS). Jika kita melakukan validasi di frontend saja, hal tersebut dapat dilewati dengan mudah oleh peneyrang. Maka dari itu, backend merupakan pilihan yang lebih aman untuk memastikan pembersihan tersebut.
+
+### **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!**
+1 Menambah fungsi di views.py untuk create product melalui AJAX. Lalu, memodifikasi `main.html` untuk membuat form AJAX dan menambah modal untuk mengirim data secara asynchronous menggunakan `fetch`.
+2. Menambah fungsi lain di `main.html` yang berguna untuk merefresh data secara otomatis. 
+3. Melakukan penambahan `strip_tags()` untuk mencegah serangan XSS.
+
+
 ## **TUGAS 5: Implementasi Form dan Data Delivery pada Django**
 
 ### **Jika terdapat beberpa CSS selector untuk satu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!**
