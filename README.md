@@ -26,9 +26,9 @@ Django menggunakan tiken CSRF untuk melindungi sistem dari serangan yang mungkin
 Validasi dan pembersihan data di backend sangat penting untuk memastikan keamanan web. Hal tersebut dapat mencegah serangan seperti Cross-Site Scripting (XSS). Jika kita melakukan validasi di frontend saja, hal tersebut dapat dilewati dengan mudah oleh peneyrang. Maka dari itu, backend merupakan pilihan yang lebih aman untuk memastikan pembersihan tersebut.
 
 ### **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!**
-1 Menambah fungsi di views.py untuk create product melalui AJAX. Lalu, memodifikasi `main.html` untuk membuat form AJAX dan menambah modal untuk mengirim data secara asynchronous menggunakan `fetch`.
-2. Menambah fungsi lain di `main.html` yang berguna untuk merefresh data secara otomatis. 
-3. Melakukan penambahan `strip_tags()` untuk mencegah serangan XSS.
+1. Menambah fungsi di views.py untuk create product melalui AJAX. Lalu, memodifikasi `main.html` untuk membuat form AJAX dan menambah modal untuk mengirim data secara asynchronous menggunakan `fetch`.
+2. Menambah fungsi lain di `main.html` yang berguna untuk merefresh data secara otomatis.
+3.  Melakukan penambahan `strip_tags()` untuk mencegah serangan XSS.
 
 
 ## **TUGAS 5: Implementasi Form dan Data Delivery pada Django**
